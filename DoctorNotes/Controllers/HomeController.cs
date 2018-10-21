@@ -1,9 +1,4 @@
-﻿//  --------------------------------------------------------------------------------------
-// DoctorNotes.HomeController.cs
-// 2018/10/20
-//  --------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using DoctorNotes.Models;
@@ -44,13 +39,11 @@ namespace DoctorNotes.Controllers
         [HttpPost]
         public ActionResult Notify()
         {
-            // Note:  This assumes that we would only want to send the most recent message as a notification
-            // e.g. we're getting the last (most recent) message in the list
 
             // TODO:  Retrieve the newest message from the DNN database
             var message = Notes.OrderBy(p => p.Id)
                                .Last();
-            // Now you've got the message content that you want to send in the email body
+
             // TODO:  Send an email using DNN
             return RedirectToAction(nameof(NotificationSent));
         }

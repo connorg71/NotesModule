@@ -1,9 +1,4 @@
-﻿//  --------------------------------------------------------------------------------------
-// DoctorNotes.HomeViewModel.cs
-// 2018/10/20
-//  --------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace DoctorNotes.Models
 {
