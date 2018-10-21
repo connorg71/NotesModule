@@ -1,0 +1,56 @@
+﻿@model DoctorNotes.Models.HomeViewModel
+
+<!DOCTYPE html>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=bhnx8al2qncmo9smco0n8tp5dkqd73gll0tvht05jwhxik3b"></script>
+
+<script>
+    tinymce.init({
+        selector: '#text-editor'
+    });
+</script>
+<html>
+<head>
+    <title>Home</title>
+</head>
+<body>
+<div>
+    <div id="selector">
+        @Html.DropDownListFor(p => p.PreviousNotes, new SelectList(Model.PreviousNotes, "Notes", "Id"), "", new {id = "dropdown"})
+    </div>
+    <div id="editor">
+        @using (Html.BeginForm())
+        {
+            @Html.TextAreaFor(p => p.CurrentNote.Notes, new {id = "text-editor"})
+            <button type="submit">Submit</button>
+        }
+        
+        @using (Html.BeginForm("Notify", "Home"))
+        {
+            <button type="submit">Notify</button>
+        }
+    </div>
+    <div id="readonly"></div>
+
+
+    <script>
+        $(document).ready(function() {
+            $("#dropdown").change(function() {
+                const text = $("#dropdown").val();
+                if (text.length === 0) {
+                    $("#readonly").hide();
+                    $("#editor").show();
+                    return;
+                } else {
+                    $("#editor").hide();
+                    $("#readonly").show();
+                }
+                $("#readonly").empty();
+                $("#readonly").append(text);
+            });
+        });
+    </script>
+
+</div>
+</body>
+</html>
